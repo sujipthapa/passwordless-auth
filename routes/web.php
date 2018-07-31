@@ -28,8 +28,4 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
 
-Route::get('user/activate/{token}', 'Auth\RegisterController@activate')
-    ->name('user.activate')
-    ->middleware('signed');
-
 Route::get('/home', 'HomeController@index')->name('home');

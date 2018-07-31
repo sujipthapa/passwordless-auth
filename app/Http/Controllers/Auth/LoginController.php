@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Auth\Traits;
 use App\Http\Controllers\Controller;
 
-/**
- * Class LoginController
- * @package App\Http\Controllers\Auth
- */
 class LoginController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+     */
+
     use Traits\PasswordLessAuthentication;
 
     /**
