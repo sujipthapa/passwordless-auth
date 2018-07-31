@@ -43,7 +43,7 @@ class NewLoginAttempt extends Notification
         return with(new MailMessage)
             ->from(env('ADMIN_MAIL_ADDRESS'))
             ->subject('Login Your Account')
-            ->greeting('Hello !')
+            ->greeting("Hello {$this->attempt->user->name}!")
             ->line('Please click the button below to get access to the application, which will be valid only for 15 minutes.')
             ->action('Login to your account', URL::temporarySignedRoute('login.token.validate', now()->addMinutes(15), [$this->attempt->token]))
             ->line('Thank you for using our application!');
