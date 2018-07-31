@@ -90,7 +90,7 @@ trait PasswordLessAuthentication
      * Attempt to log the user into the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return bool
+     * @return \App\LoginAttempt
      */
     protected function createLoginAttempt(Request $request)
     {
