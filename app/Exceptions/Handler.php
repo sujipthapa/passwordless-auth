@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if (is_a($exception, InvalidSignatureException::class)) {
-            return response()->view('auth._link-expired');
+            return response()->view('_signature-expired');
         }
 
         return parent::render($request, $exception);

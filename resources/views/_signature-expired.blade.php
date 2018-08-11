@@ -10,7 +10,7 @@
                     </div>
                     <div class="card-body">
                         <div class="alert alert-danger text-center text-muted">
-                            Your URL seems to be expired, please try generating a new one and try again.
+                            The signature seems to be expired, please try generating a new one and try again.
                         </div>
                     </div>
                 </div>
