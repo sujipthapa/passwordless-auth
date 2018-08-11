@@ -39,8 +39,8 @@ class LoginAttempt extends Model
     {
         $query = self::where('token', $token)
             ->where('created_at', '>', Carbon::parse('-15 minutes'))
-            ->firstOrFail();
+            ->first();
 
-        return $query->user;
+        return $query->user ?? null;
     }
 }

@@ -21,9 +21,7 @@ trait PasswordLessAuthentication
      */
     protected function validateLogin(Request $request)
     {
-        $messages = [
-            'exists' => trans('auth.exists'),
-        ];
+        $messages = ['exists' => trans('auth.exists')];
 
         $this->validate($request, [
             $this->username() => 'required|email|exists:users',
@@ -40,6 +38,14 @@ trait PasswordLessAuthentication
      */
     public function attempt(Request $request)
     {
+        $this->incrementLoginAttempts($request);
+
+        if ($this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
         $this->validateLogin($request);
 
         if ($this->createLoginAttempt($request)) {
@@ -83,7 +89,9 @@ trait PasswordLessAuthentication
     {
         $user = LoginAttempt::userFromToken($token);
 
-        return $this->guard()->login($user);
+        if (is_object($user)) {
+            return $this->guard()->login($user);
+        }
     }
 
     /**
