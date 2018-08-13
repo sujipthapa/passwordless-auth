@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Routing\Exceptions\InvalidSignatureException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,6 +47,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if (is_a($exception, InvalidSignatureException::class)) {
+            return response()->view('_signature-expired');
+        }
+
         return parent::render($request, $exception);
     }
 }
